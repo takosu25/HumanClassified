@@ -11,7 +11,7 @@ public class Dancer : JobBase
 
     public override bool Judge(JudgeJobOption option)
     {
-        return option.magicLevel.value == MagicLevel.WEAK && option.abilityBase is LightAbility;
+        return MagicLevel.IsWeak(option.magicLevel) && option.abilityBase is LightAbility;
     }
 }
 
