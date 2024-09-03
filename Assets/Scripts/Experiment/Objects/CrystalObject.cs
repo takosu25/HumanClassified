@@ -21,4 +21,12 @@ public class CrystalObject : MonoBehaviour
         mousePosition.z = 0;
         transform.position = mousePosition;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.tag.Equals("Player")) return;
+        var humandata = collision.GetComponent<HumanObject>().humanData;
+        var exam = new CrystalExam();
+        
+        Debug.Log(exam.Exam(new ExamOption(humandata)));
+    }
 }
