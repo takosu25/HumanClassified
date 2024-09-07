@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         var human = Instantiate(humanPrefab);
-        var humanData = new Human(magicLevel:new MagicLevel(3),abilityBase:new DarkAbility());
+        var humanData = new Human(magicLevel:new MagicLevel(Random.Range(MagicLevel.MIN,MagicLevel.MAX + 1)),abilityBase:new DarkAbility());
         human.GetComponent<HumanObject>().humanData = humanData;
+
     }
 
     // Update is called once per frame
