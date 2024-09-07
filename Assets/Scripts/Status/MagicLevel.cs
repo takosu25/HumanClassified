@@ -5,6 +5,10 @@ using UnityEngine;
 public class MagicLevel
 {
     public int value;
+    public MagicLevel(int value)
+    {
+        this.value = value;
+    }
     public const int MAX = 5;
     public const int MIN = 1;
     public static bool IsNone(MagicLevel magicLevel)
