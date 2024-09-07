@@ -8,4 +8,9 @@ public class Human
     public MagicLevel magicLevel;
     public JobBase job;
     public AbilityBase ability;
+    public Human(MagicLevel magicLevel,AbilityBase abilityBase)
+    {
+        this.magicLevel = magicLevel;
+        ability = abilityBase;
+    }
 }
