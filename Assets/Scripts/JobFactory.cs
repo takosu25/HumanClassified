@@ -10,7 +10,7 @@ public enum JobResult
 
 public class JobFactory
 {
-    public static JobBase JobInstance(Enum enumJob)
+    public static JobBase JobInstance(JobResult enumJob)
     {
         switch (enumJob)
         {
