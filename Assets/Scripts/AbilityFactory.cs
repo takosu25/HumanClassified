@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum AbilityResult
 {
-    Fire,Water,Nature,Litgh,Dark
+    Fire,Water,Nature,Light,Dark
 }
 public class AbilityFactory
 {
@@ -19,7 +19,7 @@ public class AbilityFactory
                 return new WaterAbility();
             case AbilityResult.Nature:
                 return new NatureAbility();
-            case AbilityResult.Litgh:
+            case AbilityResult.Light:
                 return new LightAbility();
             case AbilityResult.Dark:
                 return new DarkAbility();
