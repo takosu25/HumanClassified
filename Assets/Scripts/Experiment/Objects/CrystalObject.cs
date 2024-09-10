@@ -2,31 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrystalObject : MonoBehaviour
+public class CrystalObject : LabwareObjectBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Exam(ExamOption examOption)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void OnMouseDrag()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
-        transform.position = mousePosition;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.tag.Equals("Player")) return;
-        var humandata = collision.GetComponent<HumanObject>().humanData;
         var exam = new CrystalExam();
-        
-        Debug.Log(exam.Exam(new ExamOption(humandata)));
+        Debug.Log(exam.Exam(examOption));
     }
 }
