@@ -7,6 +7,6 @@ public class PaperObject : LabwareObjectBase
     public override void Exam(ExamOption examOption)
     {
         var exam = new PaperExam();
-        exam.Exam(examOption);
+        Debug.Log(exam.Exam(examOption));
     }
 }
