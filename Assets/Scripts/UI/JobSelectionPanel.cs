@@ -36,4 +36,5 @@ public class JobSelectionPanel : MonoBehaviour
     public void SetManager(GameManager manager){
         this.manager = manager;
     }
+
 }

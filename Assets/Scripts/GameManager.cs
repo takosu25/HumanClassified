@@ -36,4 +36,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("はずれ！");
         }
     }
+
+    public void OpenJobPanel(){
+        panel.gameObject.SetActive(true);
+    }
+    public void CloseJobPanel(){
+        panel.gameObject.SetActive(false);
+    }
 }
