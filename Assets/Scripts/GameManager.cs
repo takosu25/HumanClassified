@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -16,7 +18,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         human = Instantiate(humanPrefab);
-        var humanData = new Human(magicLevel:new MagicLevel(1),abilityBase:new FireAbility());
+        Human[] humans = {
+            new Human(magicLevel: new MagicLevel(1),abilityBase: new FireAbility()),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new FireAbility()),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new WaterAbility()),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility()),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility()),
+        };
+        var humanData = humans[Random.Range(0,humans.Length)];
         human.GetComponent<HumanObject>().humanData = humanData;
         panel.GetComponent<JobSelectionPanel>().SetManager(this);
     }
