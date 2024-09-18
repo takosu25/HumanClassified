@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum JobResult
 {
-    Satan, Hero, Dancer, Swordsman
+    Satan, Hero, Dancer, Swordsman, Farmer, Chef, Firefighter
 }
 
 public class JobFactory
@@ -22,6 +22,12 @@ public class JobFactory
                 return new Dancer();
             case JobResult.Swordsman:
                 return new Swordsman();
+            case JobResult.Farmer:
+                return new Farmer();
+            case JobResult.Firefighter:
+                return new Firefighter();
+            case JobResult.Chef:
+                return new Chef();
             default:
                 throw new ArgumentException("職業を渡せと言っておるだろうが");
         }
