@@ -5,6 +5,12 @@ using UnityEngine;
 public class JudgeJobOption
 {
     public AbilityBase abilityBase;
+
     public MagicLevel magicLevel;
-    public int humanity;
+    
+
+    public JudgeJobOption(AbilityBase abilityBase, MagicLevel magicLevel){
+        this.abilityBase = abilityBase;
+        this.magicLevel = magicLevel;
+    }
 }

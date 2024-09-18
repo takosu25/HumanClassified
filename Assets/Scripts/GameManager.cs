@@ -6,18 +6,34 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     GameObject humanPrefab;
+
+    private GameObject human;
+
+    [SerializeField]
+    JobSelectionPanel panel;
+
     // Start is called before the first frame update
     void Start()
     {
-        var human = Instantiate(humanPrefab);
-        var humanData = new Human(magicLevel:new MagicLevel(Random.Range(MagicLevel.MIN,MagicLevel.MAX + 1)),abilityBase:new FireAbility());
+        human = Instantiate(humanPrefab);
+        var humanData = new Human(magicLevel:new MagicLevel(1),abilityBase:new FireAbility());
         human.GetComponent<HumanObject>().humanData = humanData;
-
+        panel.GetComponent<JobSelectionPanel>().SetManager(this);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Checked(JobBase job){
+        var humanData = human.GetComponent<HumanObject>().humanData;
+        var judgedJob = new JudgeJobManager().JudgeJob(new JudgeJobOption(humanData.ability,humanData.magicLevel));
+        if(judgedJob.GetType() == job.GetType()){
+            Debug.Log("正解！");
+        }else{
+            Debug.Log("はずれ！");
+        }
     }
 }

@@ -13,6 +13,11 @@ public class JobSelectionPanel : MonoBehaviour
 
     private JobBase selectionJob;
 
+    private GameManager manager;
+    public void Initialize(GameManager manager){
+        this.manager = manager;
+    }
+
     void Start()
     {
         foreach(JobResult jobResult in Enum.GetValues(typeof(JobResult))){
@@ -23,14 +28,12 @@ public class JobSelectionPanel : MonoBehaviour
             button.transform.SetParent(buttonListPanel.transform, true);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetSelectionJob(JobBase job){
         selectionJob = job;
+        manager.Checked(job);
+    }
+
+    public void SetManager(GameManager manager){
+        this.manager = manager;
     }
 }
