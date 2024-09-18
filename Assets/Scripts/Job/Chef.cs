@@ -6,7 +6,7 @@ public class Chef : JobBase
 {
     public override string GetName()
     {
-        return "消防士";
+        return "料理人";
     }
 
     public override bool Judge(JudgeJobOption option)
