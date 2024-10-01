@@ -35,14 +35,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Debug.Log($"現在の所持金：{money.GetValue()}");
+        }
     }
 
     public void Checked(JobBase job){
         var humanData = human.GetComponent<HumanObject>().humanData;
         var judgedJob = new JudgeJobManager().JudgeJob(new JudgeJobOption(humanData.ability,humanData.magicLevel));
         if(judgedJob.GetType() == job.GetType()){
-            Debug.Log("正解！");
+            money.AddValue(humanData.dropMoney.GetValue());
+            Debug.Log("あたり！");
         }else{
             Debug.Log("はずれ！");
         }
