@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject human;
 
+    private Money money = Money.Zero();
+
     [SerializeField]
     JobSelectionPanel panel;
 
@@ -51,5 +53,9 @@ public class GameManager : MonoBehaviour
     }
     public void CloseJobPanel(){
         panel.gameObject.SetActive(false);
+    }
+
+    public Money GetMoney(){
+        return money;
     }
 }
