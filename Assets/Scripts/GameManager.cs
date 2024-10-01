@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour
     {
         human = Instantiate(humanPrefab);
         Human[] humans = {
-            new Human(magicLevel: new MagicLevel(1),abilityBase: new FireAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new FireAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new WaterAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility()),
+            new Human(magicLevel: new MagicLevel(1),abilityBase: new FireAbility(),new Money(3)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new FireAbility(),new Money(5)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new WaterAbility(),new Money(7)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility(),new Money(10)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility(),new Money(1)),
         };
         var humanData = humans[Random.Range(0,humans.Length)];
         human.GetComponent<HumanObject>().humanData = humanData;
