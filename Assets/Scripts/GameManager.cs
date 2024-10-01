@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject human;
 
+    private Money money = Money.Zero();
+
     [SerializeField]
     JobSelectionPanel panel;
 
@@ -19,11 +21,11 @@ public class GameManager : MonoBehaviour
     {
         human = Instantiate(humanPrefab);
         Human[] humans = {
-            new Human(magicLevel: new MagicLevel(1),abilityBase: new FireAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new FireAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new WaterAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility()),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility()),
+            new Human(magicLevel: new MagicLevel(1),abilityBase: new FireAbility(),new Money(3)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new FireAbility(),new Money(5)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new WaterAbility(),new Money(7)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility(),new Money(10)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility(),new Money(1)),
         };
         var humanData = humans[Random.Range(0,humans.Length)];
         human.GetComponent<HumanObject>().humanData = humanData;
@@ -33,14 +35,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Debug.Log($"現在の所持金：{money.GetValue()}");
+        }
     }
 
     public void Checked(JobBase job){
         var humanData = human.GetComponent<HumanObject>().humanData;
         var judgedJob = new JudgeJobManager().JudgeJob(new JudgeJobOption(humanData.ability,humanData.magicLevel));
         if(judgedJob.GetType() == job.GetType()){
-            Debug.Log("正解！");
+            money.AddValue(humanData.dropMoney.GetValue());
+            Debug.Log("あたり！");
         }else{
             Debug.Log("はずれ！");
         }
@@ -51,5 +56,9 @@ public class GameManager : MonoBehaviour
     }
     public void CloseJobPanel(){
         panel.gameObject.SetActive(false);
+    }
+
+    public Money GetMoney(){
+        return money;
     }
 }
