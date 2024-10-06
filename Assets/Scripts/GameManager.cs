@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Xml.Serialization;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -27,21 +28,25 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        human = Instantiate(humanPrefab);
-        Human[] humans = {
-            new Human(magicLevel: new MagicLevel(1),abilityBase: new FireAbility(),new Money(3)),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new FireAbility(),new Money(5)),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new WaterAbility(),new Money(7)),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility(),new Money(10)),
-            new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility(),new Money(1)),
-        };
-        var humanData = humans[Random.Range(0,humans.Length)];
-        human.GetComponent<HumanObject>().humanData = humanData;
         panel.GetComponent<JobSelectionPanel>().SetManager(this);
         timerManager.TimeUpEvent += TimeUp;
         timerManager.CountUpEvent += RefreshTimerText;
-        timerManager.SetTimer(10);
+        timerManager.SetTimer(60);
         timerManager.CountStart();
+        InstantiateHuman();
+    }
+
+    private void InstantiateHuman(){
+        human = Instantiate(humanPrefab);
+        Human[] humans = {
+            new Human(magicLevel: new MagicLevel(1),abilityBase: new FireAbility(),new Money(4)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new FireAbility(),new Money(5)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new WaterAbility(),new Money(6)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility(),new Money(5)),
+            new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility(),new Money(4)),
+        };
+        var humanData = humans[Random.Range(0,humans.Length)];
+        human.GetComponent<HumanObject>().humanData = humanData;   
     }
 
     // Update is called once per frame
@@ -64,6 +69,10 @@ public class GameManager : MonoBehaviour
             credibility.RemoveValue(100);
             Debug.Log("はずれ！");
         }
+        Debug.Log("-----------------------------");
+        CloseJobPanel();
+        Destroy(human);
+        InstantiateHuman();
     }
 
     public void OpenJobPanel(){
