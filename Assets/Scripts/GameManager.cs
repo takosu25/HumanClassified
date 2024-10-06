@@ -4,6 +4,7 @@ using System.Data;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -78,6 +79,8 @@ public class GameManager : MonoBehaviour
 
     /// 制限時間が終了したとき呼ばれる
     private void TimeUp(){
+        ResultManager.resultMoney = money;
+        SceneManager.LoadScene("ResultScene");
         Debug.Log("タイムアップ！");
     }
 
