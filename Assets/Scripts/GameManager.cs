@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     JobSelectionPanel panel;
+    [SerializeField]
+    TextMeshProUGUI timerText;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
         human.GetComponent<HumanObject>().humanData = humanData;
         panel.GetComponent<JobSelectionPanel>().SetManager(this);
         timerManager.TimeUpEvent += TimeUp;
+        timerManager.CountUpEvent += RefreshTimerText;
         timerManager.SetTimer(10);
         timerManager.CountStart();
     }
@@ -68,7 +72,13 @@ public class GameManager : MonoBehaviour
         return money;
     }
 
+    /// 制限時間が終了したとき呼ばれる
     private void TimeUp(){
         Debug.Log("タイムアップ！");
+    }
+
+    /// タイマーのテキストを更新する
+    private void RefreshTimerText(int timer){
+        timerText.text = $"残り時間：{timer}秒";
     }
 }

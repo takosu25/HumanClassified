@@ -8,6 +8,9 @@ public class TimerManager : MonoBehaviour
     [SerializeField]
     public event Action TimeUpEvent;
 
+    [SerializeField]
+    public event Action<int> CountUpEvent;
+
     private int timer = 0;
 
     public void SetTimer(int timer){
@@ -21,6 +24,7 @@ public class TimerManager : MonoBehaviour
     private IEnumerator CountUpPerSecond(){
         yield return new WaitForSeconds(1);
         timer -= 1;
+        CountUpEvent.Invoke(timer);
         if(timer <= 0){
             TimeUpEvent.Invoke();
         }else{
