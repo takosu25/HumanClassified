@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject humanPrefab;
 
+    [SerializeField]
+    TimerManager timerManager;
+
     private GameObject human;
 
     private Money money = Money.Zero();
@@ -30,6 +33,9 @@ public class GameManager : MonoBehaviour
         var humanData = humans[Random.Range(0,humans.Length)];
         human.GetComponent<HumanObject>().humanData = humanData;
         panel.GetComponent<JobSelectionPanel>().SetManager(this);
+        timerManager.TimeUpEvent += TimeUp;
+        timerManager.SetTimer(10);
+        timerManager.CountStart();
     }
 
     // Update is called once per frame
@@ -60,5 +66,9 @@ public class GameManager : MonoBehaviour
 
     public Money GetMoney(){
         return money;
+    }
+
+    private void TimeUp(){
+        Debug.Log("タイムアップ！");
     }
 }
