@@ -68,6 +68,10 @@ public class GameManager : MonoBehaviour
             credibility.RemoveValue(100);
             Debug.Log("はずれ！");
         }
+        Debug.Log("-----------------------------");
+        CloseJobPanel();
+        Destroy(human);
+        InstantiateHuman();
     }
 
     public void OpenJobPanel(){
