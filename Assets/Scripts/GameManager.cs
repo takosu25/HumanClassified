@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private GameObject human;
 
     private Money money = Money.Zero();
+    private Credibility credibility = Credibility.Zero();
 
     [SerializeField]
     JobSelectionPanel panel;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space)){
             Debug.Log($"現在の所持金：{money.GetValue()}");
+            Debug.Log($"現在の信頼度：{credibility.GetValue()}");
         }
     }
 
@@ -55,8 +57,10 @@ public class GameManager : MonoBehaviour
         var judgedJob = new JudgeJobManager().JudgeJob(new JudgeJobOption(humanData.ability,humanData.magicLevel));
         if(judgedJob.GetType() == job.GetType()){
             money.AddValue(humanData.dropMoney.GetValue());
+            credibility.AddValue(1);
             Debug.Log("あたり！");
         }else{
+            credibility.RemoveValue(100);
             Debug.Log("はずれ！");
         }
     }
@@ -80,5 +84,9 @@ public class GameManager : MonoBehaviour
     /// タイマーのテキストを更新する
     private void RefreshTimerText(int timer){
         timerText.text = $"残り時間：{timer}秒";
+    }
+    
+    public Credibility GetCredibility(){
+        return credibility;
     }
 }

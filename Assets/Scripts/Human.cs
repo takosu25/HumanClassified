@@ -9,6 +9,7 @@ public class Human
     public JobBase job;
     public AbilityBase ability;
     public Money dropMoney;
+    
     public Human(MagicLevel magicLevel,AbilityBase abilityBase,Money dropMoney)
     {
         this.magicLevel = magicLevel;
