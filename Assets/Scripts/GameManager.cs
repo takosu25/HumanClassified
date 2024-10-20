@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility(),new Money(4)),
         };
         var humanData = humans[Random.Range(0,humans.Length)];
-        human.transform.position = new Vector3(0,-4.7f,0);
+        human.transform.position = new Vector3(0,-1f,0);
         human.GetComponent<HumanObject>().humanData = humanData;   
     }
 
