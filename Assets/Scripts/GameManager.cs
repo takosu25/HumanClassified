@@ -86,9 +86,9 @@ public class GameManager : MonoBehaviour
     public void SwitchPanel(){
         bool isActive = panel.gameObject.activeSelf;
         if(isActive){
-            OpenJobPanel();
-        }else{
             CloseJobPanel();
+        }else{
+            OpenJobPanel();
         }
 
     }
