@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)){
             Debug.Log($"現在の所持金：{money.GetValue()}");
             Debug.Log($"現在の信頼度：{credibility.GetValue()}");
+            SwitchPanel();
         }
     }
 
@@ -76,11 +77,20 @@ public class GameManager : MonoBehaviour
         InstantiateHuman();
     }
 
-    public void OpenJobPanel(){
+    private void OpenJobPanel(){
         panel.gameObject.SetActive(true);
     }
-    public void CloseJobPanel(){
+    private void CloseJobPanel(){
         panel.gameObject.SetActive(false);
+    }
+    public void SwitchPanel(){
+        bool isActive = panel.gameObject.activeSelf;
+        if(isActive){
+            CloseJobPanel();
+        }else{
+            OpenJobPanel();
+        }
+
     }
 
     public Money GetMoney(){
