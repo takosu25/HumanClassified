@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
         panel.GetComponent<JobSelectionPanel>().SetManager(this);
         timerManager.TimeUpEvent += TimeUp;
         timerManager.CountUpEvent += RefreshTimerText;
-        timerManager.SetTimer(60);
+        timerManager.SetTimer(180);
         timerManager.CountStart();
         InstantiateHuman();
     }
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
             new Human(magicLevel: new MagicLevel(2),abilityBase: new NatureAbility(),new Money(5)),
             new Human(magicLevel: new MagicLevel(2),abilityBase: new LightAbility(),new Money(4)),
         };
-        var humanData = humans[Random.Range(0,humans.Length)];
+        var humanData = humans[UnityEngine.Random.Range(0,humans.Length)];
         human.transform.position = new Vector3(0,-1f,0);
         human.GetComponent<HumanObject>().humanData = humanData;   
     }
@@ -106,7 +107,8 @@ public class GameManager : MonoBehaviour
 
     /// タイマーのテキストを更新する
     private void RefreshTimerText(int timer){
-        timerText.text = $"残り時間：{timer}秒";
+        TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
+        timerText.text = timeSpan.ToString(@"mm\:ss");
     }
     
     public Credibility GetCredibility(){
